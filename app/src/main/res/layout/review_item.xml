@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/reviewCardView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:cardBackgroundColor="@android:color/holo_green_light"
+    android:layout_margin="8dp"
+    android:alpha="0.8"
+    app:cardCornerRadius="8dp"
+    app:cardUseCompatPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/titleReviewTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:text="-"
+            tools:text="Review title"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/reviewTextView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:paddingBottom="6dp"
+            android:textColor="@android:color/white"
+            tools:text="Ингмар Бергман заслуженно считается одним из великих режиссеров Швеции, да и мирового кино вообще. Он ловко раскрывает философские и вечные темы в полуторачасовых фильмах с довольно простым и прямолинейным повествованием. Он повлиял на многих режиссеров, а также развил авторское кино. Но, тем не менее, не каждый его фильм является абсолютным шедевром, из 11 просмотренных мной фильмов мне понравилось всего пять: Страсть (очень недооцененная у Бергмана кинокартина!), Земляничная поляна, Персона, Час волка и, конечно, главное его творение — Седьмая печать. Печать является шедевральной философской притчей и одним из моих самых любимых фильмов, хоть я постиг его и не сразу. Кинокартина богата на аллюзии, аллегории и метафоры, одна только игра в шахматы со Смертью чего стоит. Седьмая печать один из немногих фильмов, где каждый персонаж запоминается и являет собой эдакий архитип. Особенно выделяется оруженосец Йонс в исполнении Гуннара Бьёрнстранда, возможно, самый циничный, но и в то же время самый колоритный персонаж во всем фильме. Близким же мне по духу является артист Юф — эдакий идеалист и болтун. Но все, же лучший персонаж в фильме это рыцарь Антонис Блок, исполненный Максом фон Сюдовым, в Блоке, наверно, каждый найдет самого себя, ибо каждый может сомневаться, или искать смысл жизни, и вообще ответы на многие другие вечные вопросы. Один лишь диалог полностью раскрывает суть Антониса: - Смерть: Тебе не надоело задавать вопросы? - Рыцарь: Нет."
+            app:layout_constraintTop_toBottomOf="@id/titleReviewTextView"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
