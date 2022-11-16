@@ -6,12 +6,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.moves.data.repository.MovieRepositoryImpl
-import com.example.moves.domain.LoadMoviesListUseCase
-import com.example.moves.domain.Movie
+import com.example.moves.domain.usecase.LoadMoviesListUseCase
+import com.example.moves.domain.model.Movie
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-import io.reactivex.rxjava3.functions.Action
-import io.reactivex.rxjava3.functions.Consumer
 import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainViewModule(application: Application) : AndroidViewModel(application) {
@@ -24,13 +22,13 @@ class MainViewModule(application: Application) : AndroidViewModel(application) {
     val movies: LiveData<List<Movie>>
         get() = _movies
 
-    private val _isLoading = MutableLiveData<Boolean>(false)
+    private val _isLoading = MutableLiveData(false)
     val isLoading: LiveData<Boolean>
         get() = _isLoading
 
     private val compositeDisposable = CompositeDisposable()
 
-    var page = 1
+    private var page = 1
 
     init {
         loadMovie()

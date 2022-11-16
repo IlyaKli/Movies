@@ -1,4 +1,4 @@
-package com.example.moves.domain
+package com.example.moves.domain.model
 
 import java.io.Serializable
 
