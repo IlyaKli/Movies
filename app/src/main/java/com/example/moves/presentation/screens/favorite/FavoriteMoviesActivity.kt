@@ -14,21 +14,26 @@ import kotlinx.android.synthetic.main.activity_favorite_movies.*
 
 class FavoriteMoviesActivity : AppCompatActivity() {
 
-    private val favoriteMoviesRAdapter by lazy { FavoriteMoviesRAdapter() }
-
     private val favoriteMoviesViewModel by lazy { ViewModelProvider(this)[FavoriteMoviesViewModel::class.java] }
+    private val favoriteMoviesRAdapter by lazy { FavoriteMoviesRAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite_movies)
+        observer()
+        setFavoriteMovieRecyclerView()
+    }
 
-        favoriteMovieRecyclerView.layoutManager = GridLayoutManager(this, 2)
-
-        favoriteMovieRecyclerView.adapter = favoriteMoviesRAdapter
-
+    private fun observer() {
         favoriteMoviesViewModel.getFavoriteMovies().observe(this) {
             favoriteMoviesRAdapter.setMoviesList(it)
         }
+    }
+
+    private fun setFavoriteMovieRecyclerView() {
+        favoriteMovieRecyclerView.layoutManager = GridLayoutManager(this, 2)
+
+        favoriteMovieRecyclerView.adapter = favoriteMoviesRAdapter
 
         favoriteMoviesRAdapter.setOnClickMovieListener(object :
             FavoriteMoviesRAdapter.OnClickMovieListener {

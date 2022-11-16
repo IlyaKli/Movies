@@ -19,6 +19,7 @@ import kotlinx.android.synthetic.main.activity_detail_move.*
 
 class DetailMoveActivity : AppCompatActivity() {
 
+    private val movie by lazy { intent.getSerializableExtra("Movie") as Movie }
     private val detailMoveViewModel by lazy { ViewModelProvider(this)[DetailMoveViewModel::class.java] }
     private val trailerRAdapter by lazy { TrailerRAdapter() }
     private val reviewRAdapter by lazy { ReviewRAdapter() }
@@ -26,9 +27,13 @@ class DetailMoveActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_move)
+        setMovieInfo()
+        observer()
+        setTrailerRecyclerView()
+        setReviewRecyclerView()
+    }
 
-        val movie: Movie = intent.getSerializableExtra("Movie") as Movie
-
+    private fun setMovieInfo() {
         Glide.with(this)
             .load(movie.poster.url)
             .into(posterImageView)
@@ -40,23 +45,9 @@ class DetailMoveActivity : AppCompatActivity() {
         descriptionTextView.text = movie.description
 
         detailMoveViewModel.movieInfoLoad(movie.id)
+    }
 
-        trailerButtonRecyclerView.layoutManager = LinearLayoutManager(
-            this,
-            RecyclerView.VERTICAL,
-            false
-        )
-
-        trailerButtonRecyclerView.adapter = trailerRAdapter
-
-        reviewRecyclerView.layoutManager = LinearLayoutManager(
-            this,
-            RecyclerView.VERTICAL,
-            false
-        )
-
-        reviewRecyclerView.adapter = reviewRAdapter
-
+    private fun observer() {
         detailMoveViewModel.trailers.observe(this) {
             trailerRAdapter.setTrailer(it)
         }
@@ -65,6 +56,42 @@ class DetailMoveActivity : AppCompatActivity() {
             reviewRAdapter.setReviewList(it)
         }
 
+        detailMoveViewModel.getFavoriteMovie(movie.id).observe(this) {
+            if (it == null) {
+                val starOff = ContextCompat.getDrawable(this, android.R.drawable.star_big_off)
+                favoriteImageView.setImageDrawable(starOff)
+                favoriteImageView.setOnClickListener {
+                    detailMoveViewModel.insertMovie(movie)
+                }
+            } else {
+                val starOn = ContextCompat.getDrawable(this, android.R.drawable.btn_star_big_on)
+                favoriteImageView.setImageDrawable(starOn)
+                favoriteImageView.setOnClickListener {
+                    detailMoveViewModel.removeMovie(movie.id)
+                }
+            }
+        }
+    }
+
+    private fun setReviewRecyclerView() {
+        reviewRecyclerView.layoutManager = LinearLayoutManager(
+            this,
+            RecyclerView.VERTICAL,
+            false
+        )
+
+        reviewRecyclerView.adapter = reviewRAdapter
+    }
+
+    private fun setTrailerRecyclerView() {
+        trailerButtonRecyclerView.layoutManager = LinearLayoutManager(
+            this,
+            RecyclerView.VERTICAL,
+            false
+        )
+
+        trailerButtonRecyclerView.adapter = trailerRAdapter
+
         trailerRAdapter.setOnClickTrailerListener(object : TrailerRAdapter.OnClickTrailerListener {
             override fun onclick(trailer: Trailer) {
                 val intent = Intent(Intent.ACTION_VIEW)
@@ -72,24 +99,6 @@ class DetailMoveActivity : AppCompatActivity() {
                 startActivity(intent)
             }
         })
-
-        val starOff = ContextCompat.getDrawable(this, android.R.drawable.star_big_off)
-        val starOn = ContextCompat.getDrawable(this, android.R.drawable.btn_star_big_on)
-
-
-        detailMoveViewModel.getFavoriteMovie(movie.id).observe(this) {
-            if (it == null) {
-                favoriteImageView.setImageDrawable(starOff)
-                favoriteImageView.setOnClickListener {
-                    detailMoveViewModel.insertMovie(movie)
-                }
-            } else {
-                favoriteImageView.setImageDrawable(starOn)
-                favoriteImageView.setOnClickListener {
-                    detailMoveViewModel.removeMovie(movie.id)
-                }
-            }
-        }
     }
 
     companion object {

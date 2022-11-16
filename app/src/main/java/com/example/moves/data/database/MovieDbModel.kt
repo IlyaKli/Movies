@@ -1,4 +1,4 @@
-package com.example.moves.domain
+package com.example.moves.data.database
 
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -6,8 +6,10 @@ import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class Movie(
+@Entity(tableName = "movies")
+class MovieDbModel(
 
+    @PrimaryKey
     @SerializedName("id")
     val id: Int,
 
@@ -22,9 +24,9 @@ class Movie(
 
     @SerializedName("poster")
     @Embedded
-    val poster: Poster,
+    val poster: PosterDb,
 
     @SerializedName("rating")
     @Embedded
-    val rating: Rating
+    val rating: RatingDb
 ) : Serializable

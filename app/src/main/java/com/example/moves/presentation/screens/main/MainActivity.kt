@@ -22,16 +22,16 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        observer()
+        setMoviesRecyclerView()
+    }
 
-        movieRecyclerView.adapter = movieRAdapter
-
-        movieRecyclerView.layoutManager = GridLayoutManager(this, 2)
-
-        mainViewModule.getMoviesLD().observe(this) {
+    private fun observer() {
+        mainViewModule.movies.observe(this) {
             movieRAdapter.setMoviesList(it)
         }
 
-        mainViewModule.getIsLoadingLD().observe(this) {
+        mainViewModule.isLoading.observe(this) {
             if (it == true) {
                 loadingProgressBar.visibility = View.VISIBLE
             }
@@ -39,6 +39,12 @@ class MainActivity : AppCompatActivity() {
                 loadingProgressBar.visibility = View.GONE
             }
         }
+    }
+
+    private fun setMoviesRecyclerView() {
+        movieRecyclerView.adapter = movieRAdapter
+
+        movieRecyclerView.layoutManager = GridLayoutManager(this, 2)
 
         movieRAdapter.setOnReachEndListener(object : MovieRAdapter.OnReachEndListener {
             override fun onReachEnd() {
