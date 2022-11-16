@@ -1,4 +1,4 @@
-package com.example.moves
+package com.example.moves.presentation.screens.detail
 
 import android.app.Application
 import android.util.Log
@@ -8,6 +8,9 @@ import androidx.lifecycle.MutableLiveData
 import com.example.moves.data.database.MovieDatabase
 import com.example.moves.data.database.MoviesDao
 import com.example.moves.data.network.ApiFactory
+import com.example.moves.domain.Movie
+import com.example.moves.domain.Review
+import com.example.moves.domain.Trailer
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.functions.Function

@@ -1,4 +1,4 @@
-package com.example.moves
+package com.example.moves.presentation.screens.detail
 
 import android.content.Context
 import android.content.Intent
@@ -10,6 +10,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.moves.R
+import com.example.moves.domain.Movie
+import com.example.moves.domain.Trailer
+import com.example.moves.presentation.adapters.ReviewRAdapter
+import com.example.moves.presentation.adapters.TrailerRAdapter
 import kotlinx.android.synthetic.main.activity_detail_move.*
 
 class DetailMoveActivity : AppCompatActivity() {

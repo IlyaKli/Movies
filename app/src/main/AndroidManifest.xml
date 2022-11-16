@@ -16,13 +16,13 @@
         android:theme="@style/Theme.Moves"
         tools:targetApi="31">
         <activity
-            android:name=".FavoriteMoviesActivity"
+            android:name=".presentation.screens.favorite.FavoriteMoviesActivity"
             android:exported="false" />
         <activity
-            android:name=".DetailMoveActivity"
+            android:name="com.example.moves.presentation.screens.detail.DetailMoveActivity"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name=".presentation.screens.main.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

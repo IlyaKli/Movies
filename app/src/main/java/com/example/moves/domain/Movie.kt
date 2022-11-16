@@ -1,4 +1,4 @@
-package com.example.moves
+package com.example.moves.domain
 
 import androidx.room.Embedded
 import androidx.room.Entity
@@ -30,6 +30,7 @@ class Movie(
     @Embedded
     val rating: Rating
 ) : Serializable {
+
     override fun toString(): String {
         return "Movie(id=$id, name='$name', description='$description', year=$year, poster=$poster, rating=$rating)"
     }

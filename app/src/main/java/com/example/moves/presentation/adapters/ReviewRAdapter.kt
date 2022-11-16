@@ -1,4 +1,4 @@
-package com.example.moves
+package com.example.moves.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,6 +6,8 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moves.R
+import com.example.moves.domain.Review
 import kotlinx.android.synthetic.main.review_item.view.*
 
 class ReviewRAdapter : RecyclerView.Adapter<ReviewRAdapter.ReviewViewHolder>() {

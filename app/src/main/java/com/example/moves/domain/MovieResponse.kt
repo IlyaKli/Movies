@@ -1,5 +1,6 @@
-package com.example.moves
+package com.example.moves.domain
 
+import com.example.moves.domain.Movie
 import com.google.gson.annotations.SerializedName
 
 class MovieResponse(@SerializedName("docs") val movies: List<Movie>) {
