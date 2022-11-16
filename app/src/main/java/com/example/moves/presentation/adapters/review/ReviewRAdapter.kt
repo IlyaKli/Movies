@@ -1,15 +1,11 @@
 package com.example.moves.presentation.adapters.review
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.example.moves.R
 import com.example.moves.domain.model.Review
-import kotlinx.android.synthetic.main.review_item.view.*
 
 class ReviewRAdapter : ListAdapter<Review, ReviewViewHolder>(ReviewDiffCallback()) {
 
@@ -34,9 +30,9 @@ class ReviewRAdapter : ListAdapter<Review, ReviewViewHolder>(ReviewDiffCallback(
 
         holder.reviewTextView.text = review.review
 
-        val backgroundColorId = when {
-            review.type == "Позитивный" -> android.R.color.holo_green_light
-            review.type == "Негативный" -> android.R.color.holo_red_light
+        val backgroundColorId = when (review.type) {
+            "Позитивный" -> android.R.color.holo_green_light
+            "Негативный" -> android.R.color.holo_red_light
             else -> android.R.color.darker_gray
         }
 

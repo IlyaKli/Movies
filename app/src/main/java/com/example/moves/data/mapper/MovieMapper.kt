@@ -1,8 +1,9 @@
 package com.example.moves.data.mapper
 
-import com.example.moves.data.database.MovieDbModel
-import com.example.moves.data.database.PosterDb
-import com.example.moves.data.database.RatingDb
+
+import com.example.moves.data.database.model.MovieDbModel
+import com.example.moves.data.database.model.PosterDbModel
+import com.example.moves.data.database.model.RatingDbModel
 import com.example.moves.data.network.model.*
 import com.example.moves.domain.model.*
 
@@ -17,12 +18,12 @@ class MovieMapper {
         rating = mapRatingDbToRatingEntity(dbModel.rating)
     )
 
-    private fun mapPosterDbToPosterEntity(posterDb: PosterDb) = Poster(
-        url = posterDb.url
+    private fun mapPosterDbToPosterEntity(posterDbModel: PosterDbModel) = Poster(
+        url = posterDbModel.url
     )
 
-    private fun mapRatingDbToRatingEntity(ratingDb: RatingDb) = Rating(
-        kp = ratingDb.kp
+    private fun mapRatingDbToRatingEntity(ratingDbModel: RatingDbModel) = Rating(
+        kp = ratingDbModel.kp
     )
 
     fun mapEntityToDbModel(movie: Movie) = MovieDbModel(
@@ -34,11 +35,11 @@ class MovieMapper {
         rating = mapRatingEntityToRatingDb(movie.rating)
     )
 
-    private fun mapPosterEntityToPosterDb(poster: Poster) = PosterDb(
+    private fun mapPosterEntityToPosterDb(poster: Poster) = PosterDbModel(
         url = poster.url
     )
 
-    private fun mapRatingEntityToRatingDb(rating: Rating) = RatingDb(
+    private fun mapRatingEntityToRatingDb(rating: Rating) = RatingDbModel(
         kp = rating.kp
     )
 
