@@ -1,5 +1,8 @@
-package com.example.moves
+package com.example.moves.data.network
 
+import com.example.moves.MovieResponse
+import com.example.moves.ReviewResponse
+import com.example.moves.TrailerResponse
 import io.reactivex.rxjava3.core.Single
 import retrofit2.http.GET
 import retrofit2.http.Query
