@@ -1,6 +1,6 @@
 package com.example.moves.domain.model
 
-class Trailer(
+data class Trailer(
     val name: String,
     val url: String
 )

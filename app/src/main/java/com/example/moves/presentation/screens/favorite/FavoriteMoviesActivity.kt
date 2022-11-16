@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moves.R
 import com.example.moves.domain.model.Movie
-import com.example.moves.presentation.adapters.FavoriteMoviesRAdapter
+import com.example.moves.presentation.adapters.favoritemovies.FavoriteMoviesRAdapter
 import com.example.moves.presentation.screens.detail.DetailMoveActivity
 import kotlinx.android.synthetic.main.activity_favorite_movies.*
 
@@ -26,7 +26,7 @@ class FavoriteMoviesActivity : AppCompatActivity() {
 
     private fun observer() {
         favoriteMoviesViewModel.getFavoriteMovies().observe(this) {
-            favoriteMoviesRAdapter.setMoviesList(it)
+            favoriteMoviesRAdapter.submitList(it)
         }
     }
 
@@ -35,12 +35,9 @@ class FavoriteMoviesActivity : AppCompatActivity() {
 
         favoriteMovieRecyclerView.adapter = favoriteMoviesRAdapter
 
-        favoriteMoviesRAdapter.setOnClickMovieListener(object :
-            FavoriteMoviesRAdapter.OnClickMovieListener {
-            override fun onclick(movie: Movie) {
-                detailActivity(movie)
-            }
-        })
+        favoriteMoviesRAdapter.movieClickListener = {
+            detailActivity(it)
+        }
     }
 
     companion object {

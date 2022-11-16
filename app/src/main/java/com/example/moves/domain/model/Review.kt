@@ -1,6 +1,6 @@
 package com.example.moves.domain.model
 
-class Review(
+data class Review(
     val title: String,
     val type: String,
     val review: String,
