@@ -12,9 +12,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moves.R
 import com.example.moves.domain.model.Movie
-import com.example.moves.domain.model.Trailer
-import com.example.moves.presentation.adapters.ReviewRAdapter
-import com.example.moves.presentation.adapters.TrailerRAdapter
+import com.example.moves.presentation.adapters.review.ReviewRAdapter
+import com.example.moves.presentation.adapters.trailer.TrailerRAdapter
 import kotlinx.android.synthetic.main.activity_detail_move.*
 
 class DetailMoveActivity : AppCompatActivity() {
@@ -49,11 +48,11 @@ class DetailMoveActivity : AppCompatActivity() {
 
     private fun observer() {
         detailMoveViewModel.trailers.observe(this) {
-            trailerRAdapter.setTrailer(it)
+            trailerRAdapter.submitList(it)
         }
 
         detailMoveViewModel.reviews.observe(this) {
-            reviewRAdapter.setReviewList(it)
+            reviewRAdapter.submitList(it)
         }
 
         detailMoveViewModel.getFavoriteMovie(movie.id).observe(this) {
@@ -92,13 +91,11 @@ class DetailMoveActivity : AppCompatActivity() {
 
         trailerButtonRecyclerView.adapter = trailerRAdapter
 
-        trailerRAdapter.setOnClickTrailerListener(object : TrailerRAdapter.OnClickTrailerListener {
-            override fun onclick(trailer: Trailer) {
-                val intent = Intent(Intent.ACTION_VIEW)
-                intent.data = Uri.parse(trailer.url)
-                startActivity(intent)
-            }
-        })
+        trailerRAdapter.trailerClickListener = {
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(it.url)
+            startActivity(intent)
+        }
     }
 
     companion object {

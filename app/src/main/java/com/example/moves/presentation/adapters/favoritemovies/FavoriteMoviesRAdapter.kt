@@ -1,37 +1,16 @@
-package com.example.moves.presentation.adapters
+package com.example.moves.presentation.adapters.favoritemovies
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
 import com.example.moves.R
 import com.example.moves.domain.model.Movie
-import kotlinx.android.synthetic.main.movie_item.view.*
 
-class FavoriteMoviesRAdapter : RecyclerView.Adapter<FavoriteMoviesRAdapter.FavoriteMovieViewHolder>() {
+class FavoriteMoviesRAdapter : ListAdapter<Movie, FavoriteMovieViewHolder>(FavoriteMoviesDiffCallback()) {
 
-    private var movies: List<Movie> = ArrayList<Movie>()
-
-    private lateinit var onClickMovieListener: OnClickMovieListener
-
-    fun setOnClickMovieListener(onClickMovieListener: OnClickMovieListener) {
-        this.onClickMovieListener = onClickMovieListener
-    }
-
-
-    fun setMoviesList(movies: List<Movie>) {
-        this.movies = movies
-        notifyDataSetChanged()
-    }
-
-
-    class FavoriteMovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val imageView = itemView.movieImageView
-        var textView: TextView = itemView.ratingTextView
-    }
+    var movieClickListener: ((movie: Movie) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteMovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -43,7 +22,7 @@ class FavoriteMoviesRAdapter : RecyclerView.Adapter<FavoriteMoviesRAdapter.Favor
     }
 
     override fun onBindViewHolder(holder: FavoriteMovieViewHolder, position: Int) {
-        val movie = movies[position]
+        val movie = getItem(position)
 
         Glide.with(holder.imageView)
             .load(movie.poster.url)
@@ -63,16 +42,8 @@ class FavoriteMoviesRAdapter : RecyclerView.Adapter<FavoriteMoviesRAdapter.Favor
         holder.textView.background = background
 
         holder.imageView.setOnClickListener {
-            onClickMovieListener.onclick(movie)
+            movieClickListener?.invoke(movie)
         }
 
-    }
-
-    override fun getItemCount(): Int {
-        return movies.size
-    }
-
-    interface OnClickMovieListener {
-        fun onclick(movie: Movie)
     }
 }
