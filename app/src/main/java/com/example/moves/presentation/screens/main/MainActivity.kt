@@ -1,4 +1,4 @@
-package com.example.moves
+package com.example.moves.presentation.screens.main
 
 import android.os.Bundle
 import android.view.Menu
@@ -7,12 +7,17 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.moves.R
+import com.example.moves.domain.Movie
+import com.example.moves.presentation.adapters.MovieRAdapter
+import com.example.moves.presentation.screens.detail.DetailMoveActivity
+import com.example.moves.presentation.screens.favorite.FavoriteMoviesActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private val mainViewModule by lazy { ViewModelProvider(this)[MainViewModule::class.java] }
-    private val movieRAdapter by lazy {MovieRAdapter()}
+    private val movieRAdapter by lazy { MovieRAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

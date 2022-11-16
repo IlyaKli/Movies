@@ -1,4 +1,4 @@
-package com.example.moves
+package com.example.moves.presentation.screens.favorite
 
 import android.content.Context
 import android.content.Intent
@@ -6,6 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import com.example.moves.R
+import com.example.moves.domain.Movie
+import com.example.moves.presentation.adapters.FavoriteMoviesRAdapter
+import com.example.moves.presentation.screens.detail.DetailMoveActivity
 import kotlinx.android.synthetic.main.activity_favorite_movies.*
 
 class FavoriteMoviesActivity : AppCompatActivity() {
@@ -26,7 +30,8 @@ class FavoriteMoviesActivity : AppCompatActivity() {
             favoriteMoviesRAdapter.setMoviesList(it)
         }
 
-        favoriteMoviesRAdapter.setOnClickMovieListener(object : FavoriteMoviesRAdapter.OnClickMovieListener {
+        favoriteMoviesRAdapter.setOnClickMovieListener(object :
+            FavoriteMoviesRAdapter.OnClickMovieListener {
             override fun onclick(movie: Movie) {
                 detailActivity(movie)
             }

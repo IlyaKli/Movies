@@ -1,10 +1,12 @@
-package com.example.moves
+package com.example.moves.presentation.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.moves.R
+import com.example.moves.domain.Trailer
 import kotlinx.android.synthetic.main.trailer_item.view.*
 
 class TrailerRAdapter : RecyclerView.Adapter<TrailerRAdapter.TrailerViewHolder>() {

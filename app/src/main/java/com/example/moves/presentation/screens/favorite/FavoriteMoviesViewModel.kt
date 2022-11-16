@@ -1,10 +1,11 @@
-package com.example.moves
+package com.example.moves.presentation.screens.favorite
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.moves.data.database.MovieDatabase
 import com.example.moves.data.database.MoviesDao
+import com.example.moves.domain.Movie
 
 class FavoriteMoviesViewModel(application: Application) : AndroidViewModel(application) {
 

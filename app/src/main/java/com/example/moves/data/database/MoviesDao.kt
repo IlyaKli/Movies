@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.moves.Movie
+import com.example.moves.domain.Movie
 import io.reactivex.rxjava3.core.Completable
 
 @Dao

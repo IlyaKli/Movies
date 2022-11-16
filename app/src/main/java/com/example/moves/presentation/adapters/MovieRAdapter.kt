@@ -1,4 +1,4 @@
-package com.example.moves
+package com.example.moves.presentation.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -7,13 +7,21 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.moves.R
+import com.example.moves.domain.Movie
 import kotlinx.android.synthetic.main.movie_item.view.*
 
-class FavoriteMoviesRAdapter : RecyclerView.Adapter<FavoriteMoviesRAdapter.FavoriteMovieViewHolder>() {
+class MovieRAdapter : RecyclerView.Adapter<MovieRAdapter.MovieViewHolder>() {
 
-    private var movies: List<Movie> = ArrayList<Movie>()
+    var movies: List<Movie> = ArrayList<Movie>()
+
+    private lateinit var onReachEndListener: OnReachEndListener
 
     private lateinit var onClickMovieListener: OnClickMovieListener
+
+    fun setOnReachEndListener(onReachEndListener: OnReachEndListener) {
+        this.onReachEndListener = onReachEndListener
+    }
 
     fun setOnClickMovieListener(onClickMovieListener: OnClickMovieListener) {
         this.onClickMovieListener = onClickMovieListener
@@ -26,21 +34,21 @@ class FavoriteMoviesRAdapter : RecyclerView.Adapter<FavoriteMoviesRAdapter.Favor
     }
 
 
-    class FavoriteMovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    class MovieViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView = itemView.movieImageView
         var textView: TextView = itemView.ratingTextView
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): FavoriteMovieViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
             R.layout.movie_item,
             parent,
             false
         )
-        return FavoriteMovieViewHolder(view)
+        return MovieViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: FavoriteMovieViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         val movie = movies[position]
 
         Glide.with(holder.imageView)
@@ -64,10 +72,17 @@ class FavoriteMoviesRAdapter : RecyclerView.Adapter<FavoriteMoviesRAdapter.Favor
             onClickMovieListener.onclick(movie)
         }
 
+        if (position >= movies.lastIndex - 10) {
+            onReachEndListener.onReachEnd()
+        }
     }
 
     override fun getItemCount(): Int {
         return movies.size
+    }
+
+    interface OnReachEndListener {
+        fun onReachEnd()
     }
 
     interface OnClickMovieListener {

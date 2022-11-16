@@ -1,4 +1,4 @@
-package com.example.moves
+package com.example.moves.domain
 
 import com.google.gson.annotations.SerializedName
 
