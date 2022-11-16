@@ -4,7 +4,7 @@ import com.example.moves.data.database.MovieDbModel
 import com.example.moves.data.database.PosterDb
 import com.example.moves.data.database.RatingDb
 import com.example.moves.data.network.model.*
-import com.example.moves.domain.*
+import com.example.moves.domain.model.*
 
 class MovieMapper {
 

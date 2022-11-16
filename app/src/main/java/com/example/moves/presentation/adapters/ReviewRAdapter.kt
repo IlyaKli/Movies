@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moves.R
-import com.example.moves.domain.Review
+import com.example.moves.domain.model.Review
 import kotlinx.android.synthetic.main.review_item.view.*
 
 class ReviewRAdapter : RecyclerView.Adapter<ReviewRAdapter.ReviewViewHolder>() {

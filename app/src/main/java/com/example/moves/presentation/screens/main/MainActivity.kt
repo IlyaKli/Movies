@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moves.R
-import com.example.moves.domain.Movie
+import com.example.moves.domain.model.Movie
 import com.example.moves.presentation.adapters.MovieRAdapter
 import com.example.moves.presentation.screens.detail.DetailMoveActivity
 import com.example.moves.presentation.screens.favorite.FavoriteMoviesActivity

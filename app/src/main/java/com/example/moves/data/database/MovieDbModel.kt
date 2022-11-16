@@ -29,4 +29,4 @@ class MovieDbModel(
     @SerializedName("rating")
     @Embedded
     val rating: RatingDb
-) : Serializable
+)

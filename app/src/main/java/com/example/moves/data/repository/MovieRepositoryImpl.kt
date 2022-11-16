@@ -6,7 +6,11 @@ import androidx.lifecycle.Transformations
 import com.example.moves.data.database.MovieDatabase
 import com.example.moves.data.mapper.MovieMapper
 import com.example.moves.data.network.ApiFactory
-import com.example.moves.domain.*
+import com.example.moves.domain.model.Movie
+import com.example.moves.domain.model.MovieResponse
+import com.example.moves.domain.model.ReviewResponse
+import com.example.moves.domain.model.TrailerResponse
+import com.example.moves.domain.repository.MovieRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
 

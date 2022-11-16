@@ -7,7 +7,7 @@ import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moves.R
-import com.example.moves.domain.Movie
+import com.example.moves.domain.model.Movie
 import com.example.moves.presentation.adapters.FavoriteMoviesRAdapter
 import com.example.moves.presentation.screens.detail.DetailMoveActivity
 import kotlinx.android.synthetic.main.activity_favorite_movies.*

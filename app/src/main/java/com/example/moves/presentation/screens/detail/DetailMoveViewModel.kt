@@ -6,7 +6,10 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.moves.data.repository.MovieRepositoryImpl
-import com.example.moves.domain.*
+import com.example.moves.domain.model.Movie
+import com.example.moves.domain.model.Review
+import com.example.moves.domain.model.Trailer
+import com.example.moves.domain.usecase.*
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.functions.Function

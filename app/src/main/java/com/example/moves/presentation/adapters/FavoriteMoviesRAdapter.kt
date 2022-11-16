@@ -8,7 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moves.R
-import com.example.moves.domain.Movie
+import com.example.moves.domain.model.Movie
 import kotlinx.android.synthetic.main.movie_item.view.*
 
 class FavoriteMoviesRAdapter : RecyclerView.Adapter<FavoriteMoviesRAdapter.FavoriteMovieViewHolder>() {

@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.moves.R
-import com.example.moves.domain.Trailer
+import com.example.moves.domain.model.Trailer
 import kotlinx.android.synthetic.main.trailer_item.view.*
 
 class TrailerRAdapter : RecyclerView.Adapter<TrailerRAdapter.TrailerViewHolder>() {
