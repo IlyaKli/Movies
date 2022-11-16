@@ -1,12 +1,10 @@
-package com.example.moves.domain
+package com.example.moves.data.network.model
 
 import androidx.room.Embedded
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
-class Movie(
+class MovieDto (
 
     @SerializedName("id")
     val id: Int,
@@ -22,9 +20,9 @@ class Movie(
 
     @SerializedName("poster")
     @Embedded
-    val poster: Poster,
+    val poster: PosterDto,
 
     @SerializedName("rating")
     @Embedded
-    val rating: Rating
+    val rating: RatingDto
 ) : Serializable

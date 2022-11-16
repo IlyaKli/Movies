@@ -4,9 +4,8 @@ import android.app.Application
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.moves.domain.Movie
 
-@Database(entities = [Movie::class], version = 1, exportSchema = false)
+@Database(entities = [MovieDbModel::class], version = 1, exportSchema = false)
 abstract class MovieDatabase : RoomDatabase() {
 
     companion object {

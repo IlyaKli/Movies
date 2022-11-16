@@ -5,18 +5,18 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import com.example.moves.data.database.MovieDatabase
 import com.example.moves.data.database.MoviesDao
+import com.example.moves.data.repository.MovieRepositoryImpl
+import com.example.moves.domain.GetFavoriteMovesListUseCase
 import com.example.moves.domain.Movie
 
 class FavoriteMoviesViewModel(application: Application) : AndroidViewModel(application) {
 
-    var moviesDao: MoviesDao
+    private val repository = MovieRepositoryImpl(application)
 
-    init {
-        moviesDao = MovieDatabase.getInstance(application).moviesDao()
-    }
+    private val getFavoriteMovesListUseCase = GetFavoriteMovesListUseCase(repository)
 
     fun getFavoriteMovies() : LiveData<List<Movie>> {
-        return moviesDao.getAllMovies()
+        return getFavoriteMovesListUseCase()
     }
 
 }
