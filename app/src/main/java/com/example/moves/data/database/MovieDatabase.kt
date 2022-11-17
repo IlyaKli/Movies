@@ -11,11 +11,7 @@ abstract class MovieDatabase : RoomDatabase() {
 
     companion object {
         private var db: MovieDatabase? = null
-<<<<<<< HEAD
         private const val DB_NAME = "movies.db"
-=======
-        private const val DB_NAME = "notes.db"
->>>>>>> origin/master
         private val LOCK = Any()
 
         fun getInstance(context: Context): MovieDatabase {
