@@ -9,15 +9,26 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moves.R
 import com.example.moves.domain.model.Movie
 import com.example.moves.presentation.adapters.favoritemovies.FavoriteMoviesRAdapter
+import com.example.moves.presentation.di.MovieApplication
+import com.example.moves.presentation.di.ViewModelFactory
 import com.example.moves.presentation.screens.detail.DetailMoveActivity
 import kotlinx.android.synthetic.main.activity_favorite_movies.*
+import javax.inject.Inject
 
 class FavoriteMoviesActivity : AppCompatActivity() {
 
-    private val favoriteMoviesViewModel by lazy { ViewModelProvider(this)[FavoriteMoviesViewModel::class.java] }
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val component by lazy {
+        (application as MovieApplication).component
+    }
+
+    private val favoriteMoviesViewModel by lazy { ViewModelProvider(this, viewModelFactory)[FavoriteMoviesViewModel::class.java] }
     private val favoriteMoviesRAdapter by lazy { FavoriteMoviesRAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_favorite_movies)
         observer()
@@ -40,14 +51,14 @@ class FavoriteMoviesActivity : AppCompatActivity() {
         }
     }
 
+    private fun detailActivity(movie: Movie) {
+        val intent = DetailMoveActivity.newIntent(this, movie)
+        startActivity(intent)
+    }
+
     companion object {
         fun newIntent(context: Context): Intent {
             return Intent(context, FavoriteMoviesActivity::class.java)
         }
-    }
-
-    fun detailActivity(movie: Movie) {
-        val intent = DetailMoveActivity.newIntent(this, movie)
-        startActivity(intent)
     }
 }

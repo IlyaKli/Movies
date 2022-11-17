@@ -14,16 +14,27 @@ import com.example.moves.R
 import com.example.moves.domain.model.Movie
 import com.example.moves.presentation.adapters.review.ReviewRAdapter
 import com.example.moves.presentation.adapters.trailer.TrailerRAdapter
+import com.example.moves.presentation.di.MovieApplication
+import com.example.moves.presentation.di.ViewModelFactory
 import kotlinx.android.synthetic.main.activity_detail_move.*
+import javax.inject.Inject
 
 class DetailMoveActivity : AppCompatActivity() {
 
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val component by lazy {
+        (application as MovieApplication).component
+    }
+
     private val movie by lazy { intent.getSerializableExtra("Movie") as Movie }
-    private val detailMoveViewModel by lazy { ViewModelProvider(this)[DetailMoveViewModel::class.java] }
+    private val detailMoveViewModel by lazy { ViewModelProvider(this, viewModelFactory)[DetailMoveViewModel::class.java] }
     private val trailerRAdapter by lazy { TrailerRAdapter() }
     private val reviewRAdapter by lazy { ReviewRAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_move)
         setMovieInfo()
