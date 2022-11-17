@@ -1,11 +1,10 @@
 package com.example.moves.data.repository
 
-import android.app.Application
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
-import com.example.moves.data.database.MovieDatabase
+import com.example.moves.data.database.MoviesDao
 import com.example.moves.data.mapper.MovieMapper
-import com.example.moves.data.network.ApiFactory
+import com.example.moves.data.network.ApiService
 import com.example.moves.domain.model.Movie
 import com.example.moves.domain.model.MovieResponse
 import com.example.moves.domain.model.ReviewResponse
@@ -13,12 +12,13 @@ import com.example.moves.domain.model.TrailerResponse
 import com.example.moves.domain.repository.MovieRepository
 import io.reactivex.rxjava3.core.Completable
 import io.reactivex.rxjava3.core.Single
+import javax.inject.Inject
 
-class MovieRepositoryImpl(application: Application) : MovieRepository {
-
-    private val movieDao = MovieDatabase.getInstance(application).moviesDao()
-    private val apiService = ApiFactory.apiService
-    private val mapper = MovieMapper()
+class MovieRepositoryImpl @Inject constructor(
+    private val movieDao: MoviesDao,
+    private val apiService: ApiService,
+    private val mapper: MovieMapper
+) : MovieRepository {
 
     override fun loadMoviesList(page: Int): Single<MovieResponse> {
         return apiService.movieLoad(page).map {

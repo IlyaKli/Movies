@@ -6,8 +6,9 @@ import com.example.moves.data.database.model.PosterDbModel
 import com.example.moves.data.database.model.RatingDbModel
 import com.example.moves.data.network.model.*
 import com.example.moves.domain.model.*
+import javax.inject.Inject
 
-class MovieMapper {
+class MovieMapper @Inject constructor() {
 
     fun mapDbModelToEntity(dbModel: MovieDbModel) = Movie(
         id = dbModel.id,

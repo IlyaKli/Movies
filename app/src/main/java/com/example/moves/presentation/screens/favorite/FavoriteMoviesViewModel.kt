@@ -1,17 +1,14 @@
 package com.example.moves.presentation.screens.favorite
 
-import android.app.Application
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import com.example.moves.data.repository.MovieRepositoryImpl
-import com.example.moves.domain.usecase.GetFavoriteMovesListUseCase
+import androidx.lifecycle.ViewModel
 import com.example.moves.domain.model.Movie
+import com.example.moves.domain.usecase.GetFavoriteMovesListUseCase
+import javax.inject.Inject
 
-class FavoriteMoviesViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val repository = MovieRepositoryImpl(application)
-
-    private val getFavoriteMovesListUseCase = GetFavoriteMovesListUseCase(repository)
+class FavoriteMoviesViewModel @Inject constructor(
+    private val getFavoriteMovesListUseCase: GetFavoriteMovesListUseCase
+) : ViewModel() {
 
     fun getFavoriteMovies() : LiveData<List<Movie>> {
         return getFavoriteMovesListUseCase()
