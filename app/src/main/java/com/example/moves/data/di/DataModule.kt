@@ -16,13 +16,13 @@ interface DataModule {
 
     @ApplicationScope
     @Binds
-    fun bindShopListRepository(impl: MovieRepositoryImpl): MovieRepository
+    fun bindMovieRepository(impl: MovieRepositoryImpl): MovieRepository
 
     companion object {
 
         @ApplicationScope
         @Provides
-        fun provideShopListDao(application: Application): MoviesDao {
+        fun provideMoviesDao(application: Application): MoviesDao {
             return MovieDatabase.getInstance(application).moviesDao()
         }
 
