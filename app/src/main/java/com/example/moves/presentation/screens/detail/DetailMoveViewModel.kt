@@ -1,11 +1,9 @@
 package com.example.moves.presentation.screens.detail
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.moves.data.repository.MovieRepositoryImpl
+import androidx.lifecycle.ViewModel
 import com.example.moves.domain.model.Movie
 import com.example.moves.domain.model.Review
 import com.example.moves.domain.model.Trailer
@@ -14,20 +12,15 @@ import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.functions.Function
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class DetailMoveViewModel(application: Application) : AndroidViewModel(application) {
-
-    private val repository = MovieRepositoryImpl(application)
-
-    private val getFavoriteMoveUseCase = GetFavoriteMoveUseCase(repository)
-
-    private val addMovieInDatabaseUseCase = AddMovieInDatabaseUseCase(repository)
-
-    private val removeMovieFromDatabaseUseCase = RemoveMovieFromDatabaseUseCase(repository)
-
-    private val loadMovieTrailersUseCase = LoadMovieTrailersUseCase(repository)
-
-    private val loadMovieReviewsUseCase = LoadMovieReviewsUseCase(repository)
+class DetailMoveViewModel @Inject constructor(
+    private val getFavoriteMoveUseCase: GetFavoriteMoveUseCase,
+    private val addMovieInDatabaseUseCase: AddMovieInDatabaseUseCase,
+    private val removeMovieFromDatabaseUseCase: RemoveMovieFromDatabaseUseCase,
+    private val loadMovieTrailersUseCase: LoadMovieTrailersUseCase,
+    private val loadMovieReviewsUseCase: LoadMovieReviewsUseCase
+) : ViewModel() {
 
     private val compositeDisposable by lazy { CompositeDisposable() }
 

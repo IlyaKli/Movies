@@ -3,27 +3,42 @@ package com.example.moves.presentation.screens.main
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moves.R
 import com.example.moves.domain.model.Movie
 import com.example.moves.presentation.adapters.movie.MovieRAdapter
+import com.example.moves.presentation.di.MovieApplication
+import com.example.moves.presentation.di.ViewModelFactory
 import com.example.moves.presentation.screens.detail.DetailMoveActivity
 import com.example.moves.presentation.screens.favorite.FavoriteMoviesActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
-    private val mainViewModule by lazy { ViewModelProvider(this)[MainViewModule::class.java] }
+    @Inject
+    lateinit var viewModelFactory: ViewModelFactory
+
+    private val component by lazy { (application as MovieApplication).component }
+
+    private val mainViewModule by lazy { ViewModelProvider(this, viewModelFactory)[MainViewModule::class.java] }
     private val movieRAdapter by lazy { MovieRAdapter() }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        component.inject(this)
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        swipeRefreshListener()
         observer()
         setMoviesRecyclerView()
+    }
+
+    private fun swipeRefreshListener() {
+        movieSwipeRefreshLayout.setOnRefreshListener {
+            mainViewModule.loadMovie()
+        }
     }
 
     private fun observer() {
@@ -32,11 +47,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         mainViewModule.isLoading.observe(this) {
-            if (it == true) {
-                loadingProgressBar.visibility = View.VISIBLE
-            }
-            else {
-                loadingProgressBar.visibility = View.GONE
+            if (it == false) {
+                movieSwipeRefreshLayout.isRefreshing = false
             }
         }
     }
@@ -55,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun detailScreen(movie: Movie) {
+    private fun detailScreen(movie: Movie) {
         val intent = DetailMoveActivity.newIntent(this, movie)
         startActivity(intent)
     }

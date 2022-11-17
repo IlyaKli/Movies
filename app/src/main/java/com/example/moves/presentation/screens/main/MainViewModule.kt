@@ -1,22 +1,19 @@
 package com.example.moves.presentation.screens.main
 
-import android.app.Application
 import android.util.Log
-import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.moves.data.repository.MovieRepositoryImpl
-import com.example.moves.domain.usecase.LoadMoviesListUseCase
+import androidx.lifecycle.ViewModel
 import com.example.moves.domain.model.Movie
+import com.example.moves.domain.usecase.LoadMoviesListUseCase
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.CompositeDisposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import javax.inject.Inject
 
-class MainViewModule(application: Application) : AndroidViewModel(application) {
-
-    private val repository = MovieRepositoryImpl(application)
-
-    private val loadMoviesListUseCase = LoadMoviesListUseCase(repository)
+class MainViewModule @Inject constructor (
+    private val loadMoviesListUseCase: LoadMoviesListUseCase
+        ) : ViewModel() {
 
     private val _movies = MutableLiveData<List<Movie>>()
     val movies: LiveData<List<Movie>>
