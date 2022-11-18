@@ -4,14 +4,15 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moves.R
 import com.example.moves.domain.model.Movie
 import com.example.moves.presentation.adapters.movie.MovieRAdapter
 import com.example.moves.presentation.di.MovieApplication
 import com.example.moves.presentation.di.ViewModelFactory
 import com.example.moves.presentation.screens.detail.DetailMoveActivity
+import com.example.moves.presentation.screens.detail.DetailMovieFragment
 import com.example.moves.presentation.screens.favorite.FavoriteMoviesActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import javax.inject.Inject
@@ -35,6 +36,10 @@ class MainActivity : AppCompatActivity() {
         setMoviesRecyclerView()
     }
 
+    private fun isHorizontalOrientation(): Boolean {
+        return mainActivityDetailFragmentContainerView != null
+    }
+
     private fun swipeRefreshListener() {
         movieSwipeRefreshLayout.setOnRefreshListener {
             mainViewModule.loadMovie()
@@ -56,15 +61,25 @@ class MainActivity : AppCompatActivity() {
     private fun setMoviesRecyclerView() {
         movieRecyclerView.adapter = movieRAdapter
 
-        movieRecyclerView.layoutManager = GridLayoutManager(this, 2)
-
         movieRAdapter.onReachEndListener = {
             mainViewModule.loadMovie()
         }
 
         movieRAdapter.movieClickListener = {
-            detailScreen(it)
+            if (isHorizontalOrientation()) {
+                launchFragment(DetailMovieFragment.newInstance(it))
+            } else {
+                detailScreen(it)
+            }
         }
+    }
+
+    private fun launchFragment(fragment: Fragment) {
+        supportFragmentManager.popBackStack()
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.mainActivityDetailFragmentContainerView, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun detailScreen(movie: Movie) {

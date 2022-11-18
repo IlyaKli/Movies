@@ -2,10 +2,9 @@ package com.example.moves.presentation.screens.favorite
 
 import android.content.Context
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moves.R
 import com.example.moves.domain.model.Movie
 import com.example.moves.presentation.adapters.favoritemovies.FavoriteMoviesRAdapter
@@ -42,7 +41,6 @@ class FavoriteMoviesActivity : AppCompatActivity() {
     }
 
     private fun setFavoriteMovieRecyclerView() {
-        favoriteMovieRecyclerView.layoutManager = GridLayoutManager(this, 2)
 
         favoriteMovieRecyclerView.adapter = favoriteMoviesRAdapter
 
