@@ -2,6 +2,7 @@ package com.example.moves.data.di
 
 import android.app.Application
 import com.example.moves.presentation.screens.detail.DetailMoveActivity
+import com.example.moves.presentation.screens.detail.DetailMovieFragment
 import com.example.moves.presentation.screens.favorite.FavoriteMoviesActivity
 import com.example.moves.presentation.screens.main.MainActivity
 import dagger.BindsInstance
@@ -16,6 +17,8 @@ interface ApplicationComponent {
     fun inject(activity: DetailMoveActivity)
 
     fun inject(activity: FavoriteMoviesActivity)
+
+    fun inject(fragment: DetailMovieFragment)
 
     @Component.Factory
     interface Factory {
