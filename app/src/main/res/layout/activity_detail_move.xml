@@ -6,8 +6,8 @@
     android:id="@+id/detailActivityDetailFragmentContainerView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    tools:layout="@layout/fragment_detail_movie"
-    tools:context=".presentation.screens.detail.DetailMoveActivity" />
+    tools:context=".presentation.screens.detail.DetailMoveActivity"
+    tools:layout="@layout/fragment_detail_movie" />
 
 
 

@@ -35,8 +35,8 @@
             android:textSize="16sp"
             android:padding="8dp"
             android:textStyle="bold"
-            tools:text="Title"
-            app:layout_constraintTop_toBottomOf="@id/posterImageView"/>
+            app:layout_constraintTop_toBottomOf="@id/posterImageView"
+            tools:text="Title"/>
 
         <TextView
             android:id="@+id/yearTextView"
@@ -45,8 +45,8 @@
             android:textSize="16sp"
             android:padding="8dp"
             android:textColor="@android:color/holo_orange_light"
-            tools:text="2000"
-            app:layout_constraintTop_toBottomOf="@id/titleTextView"/>
+            app:layout_constraintTop_toBottomOf="@id/titleTextView"
+            tools:text="2000"/>
 
         <TextView
             android:id="@+id/descriptionTextView"
@@ -54,24 +54,24 @@
             android:layout_height="wrap_content"
             android:textSize="16sp"
             android:padding="8dp"
-            tools:text="Description of move"
-            app:layout_constraintTop_toBottomOf="@id/yearTextView"/>
+            app:layout_constraintTop_toBottomOf="@id/yearTextView"
+            tools:text="Description of move"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/trailerButtonRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:nestedScrollingEnabled="false"
-            tools:listitem="@layout/trailer_item"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"/>
+            app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
+            tools:listitem="@layout/trailer_item"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/reviewRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/review_item"
             android:nestedScrollingEnabled="false"
-            app:layout_constraintTop_toBottomOf="@id/trailerButtonRecyclerView"/>
+            app:layout_constraintTop_toBottomOf="@id/trailerButtonRecyclerView"
+            tools:listitem="@layout/review_item"/>
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,16 +1,12 @@
 package com.example.moves.presentation.adapters.movie
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.moves.R
 import com.example.moves.domain.model.Movie
-import kotlinx.android.synthetic.main.movie_item.view.*
 
 class MovieRAdapter : ListAdapter<Movie, MovieViewHolder>(MovieDiffCallback()) {
 

@@ -1,14 +1,11 @@
 package com.example.moves.presentation.screens.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.GridLayoutManager
 import com.example.moves.R
 import com.example.moves.domain.model.Movie
 import com.example.moves.presentation.adapters.movie.MovieRAdapter
@@ -63,8 +60,6 @@ class MainActivity : AppCompatActivity() {
 
     private fun setMoviesRecyclerView() {
         movieRecyclerView.adapter = movieRAdapter
-
-        movieRecyclerView.layoutManager = GridLayoutManager(this, 2)
 
         movieRAdapter.onReachEndListener = {
             mainViewModule.loadMovie()

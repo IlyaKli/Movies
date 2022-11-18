@@ -44,7 +44,7 @@ class MovieMapper @Inject constructor() {
         kp = rating.kp
     )
 
-    fun mapMovieDtoToEntity(dto: MovieDto) = Movie(
+    private fun mapMovieDtoToEntity(dto: MovieDto) = Movie(
         id = dto.id,
         name = dto.name,
         description = dto.description,
@@ -95,13 +95,13 @@ class MovieMapper @Inject constructor() {
         }
     }
 
-    fun mapReviewDtoToEntity(dto: ReviewDto) = Review(
+    private fun mapReviewDtoToEntity(dto: ReviewDto) = Review(
         title = dto.title,
         type = dto.type,
         review = dto.review
     )
 
-    fun mapTrailerDtoToEntity(dto: TrailerDto) = Trailer(
+    private fun mapTrailerDtoToEntity(dto: TrailerDto) = Trailer(
         name = dto.name,
         url = dto.url
     )
