@@ -6,7 +6,7 @@ The information about the movie is:
 - comments
 - links to trailers
 
-# Stack - MVVM, RxJava, Room, Retrofit, Glide, КиноПоиск API, JSON
+# Stack - Clean Architecture, DI - Dagger 2, MVVM, RxJava, Room, Retrofit, Glide, КиноПоиск API, JSON
 
 # Movies screen
 ![Mov - list](https://user-images.githubusercontent.com/67061655/198729489-77903ef1-a4a0-4bbc-a96c-a135d7db68c5.jpg)
